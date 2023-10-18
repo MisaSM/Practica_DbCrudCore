@@ -96,5 +96,64 @@ namespace PracticaCrud_MisaelSarabia.Data
             }
             return response;
         }
+
+        public bool EditContact(ContactoModel model)
+        {
+
+            bool response;
+            try
+            {
+                var dbConnection = new Conexion();
+
+                using (var conexion = new SqlConnection(dbConnection.ConnectionString()))
+                {
+                    conexion.Open();
+                    SqlCommand cmd = new SqlCommand("sp_EditarContacto", conexion);
+                    cmd.Parameters.AddWithValue("IdContacto", model.IdContacto);
+                    cmd.Parameters.AddWithValue("Nombre", model.Nombre);
+                    cmd.Parameters.AddWithValue("Telefono", model.Telefono);
+                    cmd.Parameters.AddWithValue("Correo", model.Correo);
+                    cmd.Parameters.AddWithValue("Clave", model.Clave);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.ExecuteNonQuery();
+
+                    response = true;
+                }
+            }
+            catch (Exception e)
+            {
+                string error = e.Message;
+                response = false;
+            }
+            return response;
+        }
+
+        public bool DeleteContact(int IdContacto) 
+        {
+            bool response;
+
+            try 
+            {
+                var connection = new Conexion();
+
+                using (var dbConnection = new SqlConnection(connection.ConnectionString())) 
+                {
+                    dbConnection.Open();
+                    SqlCommand cmd = new SqlCommand("sp_eliminarContacto", dbConnection);
+                    cmd.Parameters.AddWithValue("IdContacto", IdContacto);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+                }
+                response = true;
+            }
+            catch(Exception e) 
+            {
+                string error = e.Message;
+                response = false;
+            }
+            return response;
+        }
+
     }
 }
