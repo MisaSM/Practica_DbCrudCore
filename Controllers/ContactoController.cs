@@ -10,7 +10,7 @@ namespace PracticaCrud_MisaelSarabia.Controllers
         public IActionResult GetAll()
         {
             var lista = contactoData.GetContacts();
-            return View();
+            return View(lista);
         }
 
         [HttpGet]
@@ -22,10 +22,11 @@ namespace PracticaCrud_MisaelSarabia.Controllers
         [HttpPost]
         public IActionResult Save(ContactoModel model) 
         {
+            if (!ModelState.IsValid) return View();
             var respuesta = contactoData.SaveContact(model);
             if (respuesta)
             {
-                return RedirectToAction("GetAll");
+                return RedirectToAction("");
             }
             else
             {
@@ -33,5 +34,27 @@ namespace PracticaCrud_MisaelSarabia.Controllers
             }
             
         }
+
+        [HttpGet]
+        public IActionResult Edit(int IdContacto) 
+        {
+            ContactoModel contact = contactoData.GetContactById(IdContacto);
+            return View(contact);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(ContactoModel model)
+        {
+            var result = contactoData.EditContact(model);
+            if (result)
+            {
+                return RedirectToAction("GetAll");
+            }
+            else 
+            {
+                return View();
+            }
+        }
+
     }
 }

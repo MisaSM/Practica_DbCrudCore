@@ -24,7 +24,7 @@ namespace PracticaCrud_MisaelSarabia
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Contacto}/{action=GetAll}/{id?}");
 
             app.Run();
         }

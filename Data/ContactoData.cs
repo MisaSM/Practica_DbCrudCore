@@ -15,7 +15,7 @@ namespace PracticaCrud_MisaelSarabia.Data
             using (var dbConnection = new SqlConnection(connection.ConnectionString())) 
             {
                 dbConnection.Open();
-                SqlCommand sqlCommand= new SqlCommand("sp_listarContacto", dbConnection);
+                SqlCommand sqlCommand= new SqlCommand("sp_Listar", dbConnection);
                 sqlCommand.CommandType= CommandType.StoredProcedure;
                 
                 using(var dr=sqlCommand.ExecuteReader()) 
