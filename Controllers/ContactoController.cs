@@ -56,5 +56,25 @@ namespace PracticaCrud_MisaelSarabia.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Delete(int IdContacto) 
+        {
+            var contact = contactoData.GetContactById(IdContacto);
+            return View(contact);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(ContactoModel contact) 
+        {
+            var result = contactoData.DeleteContact(contact);
+            if (result) 
+            {
+                return RedirectToAction("GetAll");
+            } else 
+            {
+                return View();
+            }
+        }
+
     }
 }

@@ -108,7 +108,7 @@ namespace PracticaCrud_MisaelSarabia.Data
                 using (var conexion = new SqlConnection(dbConnection.ConnectionString()))
                 {
                     conexion.Open();
-                    SqlCommand cmd = new SqlCommand("sp_EditarContacto", conexion);
+                    SqlCommand cmd = new SqlCommand("sp_Editar", conexion);
                     cmd.Parameters.AddWithValue("IdContacto", model.IdContacto);
                     cmd.Parameters.AddWithValue("Nombre", model.Nombre);
                     cmd.Parameters.AddWithValue("Telefono", model.Telefono);
@@ -129,7 +129,7 @@ namespace PracticaCrud_MisaelSarabia.Data
             return response;
         }
 
-        public bool DeleteContact(int IdContacto) 
+        public bool DeleteContact(ContactoModel contact) 
         {
             bool response;
 
@@ -140,8 +140,8 @@ namespace PracticaCrud_MisaelSarabia.Data
                 using (var dbConnection = new SqlConnection(connection.ConnectionString())) 
                 {
                     dbConnection.Open();
-                    SqlCommand cmd = new SqlCommand("sp_eliminarContacto", dbConnection);
-                    cmd.Parameters.AddWithValue("IdContacto", IdContacto);
+                    SqlCommand cmd = new SqlCommand("sp_Eliminar", dbConnection);
+                    cmd.Parameters.AddWithValue("IdContacto", contact.IdContacto);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
                 }

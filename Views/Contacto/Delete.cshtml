@@ -1,0 +1,24 @@
+﻿@model PracticaCrud_MisaelSarabia.Models.ContactoModel;
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card col-8">
+    <div class="card-header">
+        <h1>Delete</h1>
+    </div>
+    <div class="card-body">
+        <form asp-action="Delete" asp-controller="Contacto" method="post">
+            <input type="hidden" asp-for="IdContacto" class="form-control"/>
+            <div class="alert alert-danger" role="alert">
+                ¿Desea eliminar @Html.DisplayTextFor(m =>m.Nombre)?
+            </div>
+            <div class="col-md-4 mb-3">
+                <button type="submit" class="btn btn-danger mb-3"><i class="bi bi-trash"></i> Eliminar</button>
+                <a asp-controller="Contacto" class="btn btn-primary" asp-action="GetAll"><i class="bi bi-arrow-left"></i> Volver a la lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,8 +1,46 @@
-﻿
+﻿@model PracticaCrud_MisaelSarabia.Models.ContactoModel;
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+
+<div class="card col-8">
+    <div class="card-header">
+        <h1>Editar</h1>
+    </div>
+    <div class="card-body">
+        <form asp-action="Edit" asp-controller="Contacto" method="post">
+            <input type="hidden" asp-for="IdContacto" class="form-control"/>
+            <div class="col-md-4 mb-3">
+                <label for="Nombre">Nombre</label>
+                <input type="text" class="form-control" asp-for="Nombre" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label for="Telefono">Telefono</label>
+                <input type="text" class="form-control" asp-for="Telefono" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label for="Correo">Correo</label>
+                <input type="text" class="form-control" asp-for="Correo" />
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label for="Clave">Clave</label>
+                <input type="text" class="form-control" asp-for="Clave" />
+                <span asp-validation-for="Clave" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <button type="submit" class="btn btn-success mb-3"><i class="bi bi-pencil"></i> Editar</button>
+                <a asp-controller="Contacto" class="btn btn-primary" asp-action="GetAll"><i class="bi bi-arrow-left"></i> Volver a la lista</a>
+            </div>
+
+        </form>
+    </div>
+</div>
 
